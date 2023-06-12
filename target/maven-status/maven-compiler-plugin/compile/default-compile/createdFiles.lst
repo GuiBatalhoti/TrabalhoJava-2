@@ -1,5 +1,1 @@
-Model\Manga.class
-Boot\ApplicationMain.class
-Controller\MangaController.class
-Controller\RoutingController.class
-Repository\MangaRepository.class
+.netbeans_automatic_build

@@ -1,5 +1,8 @@
-D:\TecJava\Aula12\Ex12\src\main\java\Controller\RoutingController.java
-D:\TecJava\Aula12\Ex12\src\main\java\Controller\MangaController.java
-D:\TecJava\Aula12\Ex12\src\main\java\Repository\MangaRepository.java
-D:\TecJava\Aula12\Ex12\src\main\java\Model\Manga.java
-D:\TecJava\Aula12\Ex12\src\main\java\Boot\ApplicationMain.java
+D:\Git\TrabalhoJava-2\src\main\java\Repository\MangaRepository.java
+D:\Git\TrabalhoJava-2\src\main\java\Repository\UserRepository.java
+D:\Git\TrabalhoJava-2\src\main\java\Model\User.java
+D:\Git\TrabalhoJava-2\src\main\java\Controller\UserController.java
+D:\Git\TrabalhoJava-2\src\main\java\Boot\ApplicationMain.java
+D:\Git\TrabalhoJava-2\src\main\java\Model\Manga.java
+D:\Git\TrabalhoJava-2\src\main\java\Controller\RoutingController.java
+D:\Git\TrabalhoJava-2\src\main\java\Controller\MangaController.java
