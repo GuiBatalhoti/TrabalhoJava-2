@@ -12,7 +12,8 @@ CREATE TABLE manga(
 	id_manga int UNIQUE PRIMARY KEY auto_increment,
 	title varchar(256),
 	author varchar(256),
-	publication_date date
+	publication_date date,
+	num_chapter int
 );
 
 CREATE TABLE list(
