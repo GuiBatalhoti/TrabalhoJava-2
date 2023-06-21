@@ -1,1 +1,11 @@
+Main\Controller\MangaController.class
+Main\Model\Usuario.class
+Main\Controller\RoutingController.class
+Main\Repository\UserDetailsServiceImplement.class
+Main\ApplicationMain.class
+Main\WebSecurityConfig.class
+Main\Repository\UsuarioRepository.class
+Main\Controller\UsuarioController.class
+Main\Model\Manga.class
 .netbeans_automatic_build
+Main\Repository\MangaRepository.class

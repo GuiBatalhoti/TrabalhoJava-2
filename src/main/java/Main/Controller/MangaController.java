@@ -1,7 +1,7 @@
-package Controller;
+package Main.Controller;
 
-import Model.Manga;
-import Repository.MangaRepository;
+import Main.Model.Manga;
+import Main.Repository.MangaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,9 +52,9 @@ public class MangaController {
         return mv;
     }
 
-    @RequestMapping("/{idManga}")
+    @RequestMapping("/manga/{idManga}")
     public ModelAndView detalhesManga(@PathVariable("idManga") long idManga) {
-        Manga manga = mr.findByIdEvento(idManga);
+        Manga manga = mr.findByIdManga(idManga);
         ModelAndView mv = new ModelAndView("detalhesManga");
         mv.addObject("manga", manga);
         return mv;
