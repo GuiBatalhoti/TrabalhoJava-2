@@ -28,3 +28,10 @@ target/classes/application.properties
 target/Ex12-1.0-SNAPSHOT.jar.original
 target/maven-archiver/pom.properties
 target/Ex12-1.0-SNAPSHOT.jar.original
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst

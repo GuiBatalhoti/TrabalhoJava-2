@@ -18,7 +18,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
                     .authorizeHttpRequests((requests) -> requests
-                            .requestMatchers("/", "/registration", "/error", "/login", "/index").permitAll()
+                            .requestMatchers("/", "/registration", "/registration/", "/error", "/login", "/index").permitAll()
                             .anyRequest().authenticated()
                     )
                     .formLogin((form) -> form
@@ -40,13 +40,4 @@ public class WebSecurityConfig {
 
             return new InMemoryUserDetailsManager(user);
     }
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-//        http
-//                .httpBasic()
-//                .and()
-//                .csrf().disable()
-//                .formLogin(Customizer.withDefaults());
-//        return http.build();
-//    }
 }

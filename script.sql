@@ -29,3 +29,4 @@ CREATE TABLE manga_list(
 );
 
 select * from users;
+

@@ -12,6 +12,11 @@ public class RoutingController {
     
     @GetMapping("/index")
     public String index1(){
-        return "index";
+        return "login";
+    }
+    
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }
