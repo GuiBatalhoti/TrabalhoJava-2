@@ -1,38 +1,38 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
 <html>
-<body>
-<h1 th:text="#{label.form.title}">form</h1>
-<form action="/" th:object="${user}" method="POST" enctype="utf8">
-    <div>
-        <label th:text="#{label.user.firstName}">first</label>
-        <input th:field="*{firstName}"/>
-        <p th:each="error: ${#fields.errors('firstName')}" 
-          th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.lastName}">last</label>
-        <input th:field="*{lastName}"/>
-        <p th:each="error : ${#fields.errors('lastName')}" 
-          th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.email}">email</label>
-        <input type="email" th:field="*{email}"/>
-        <p th:each="error : ${#fields.errors('email')}" 
-          th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.password}">password</label>
-        <input type="password" th:field="*{password}"/>
-        <p th:each="error : ${#fields.errors('password')}" 
-          th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.confirmPass}">confirm</label>
-        <input type="password" th:field="*{matchingPassword}"/>
-    </div>
-    <button type="submit" th:text="#{label.form.submit}">submit</button>
-</form>
+    <head>
+        <title>Registro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/registration.css">
+    <body>
+        <div class="container">
+            <form class="form-register" action="/" th:object="${user}" method="POST" enctype="utf8">
+                <h2 class="form-register-heading">Registro</h2>
+                <label for="inputUserName" class="sr-only">Nome de Usuário</label>
+                <input type="text" id="inputUserName" class="form-control" placeholder="Nome de Usuário" required autofocus>
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required>
+                <label for="inputPassword" class="sr-only">Senha</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+                <label for="inputPassword" class="sr-only">Confirmar Senha</label>
+                <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Confirmar Senha" required>
+                <div class="text-center">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" th:href="@{/templates/index.html}">Registrar</button>
+                </div>
+            </form>
+            <div class="text-center">
+                <p class="form-register-heading" id="possuiConta_text">Já possui uma conta?</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="location.href = 'login.html';">Login</button>
+            </div>
+        </div>
 
-<a th:href="@{/login.html}" th:text="#{label.form.loginLink}">login</a>
-</body>
+    </body>
 </html>
