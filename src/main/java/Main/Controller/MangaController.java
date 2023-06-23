@@ -36,7 +36,7 @@ public class MangaController {
     
     @RequestMapping("/manga")
     public ModelAndView listaManga() {
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("login");
         Iterable<Manga> eventos = mr.findAll();
         mv.addObject("eventos", eventos);
 
@@ -45,7 +45,7 @@ public class MangaController {
     
     @RequestMapping("/todosManga")
     public ModelAndView todosManga() {
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("login");
         Iterable<Manga> itManga = mr.findAll();
         mv.addObject("manga", itManga);
 

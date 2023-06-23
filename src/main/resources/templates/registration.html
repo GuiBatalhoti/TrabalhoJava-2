@@ -14,18 +14,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <link rel="stylesheet" href="css/registration.css">
     <body>
         <div class="container">
-            <form class="form-register" action="/" th:object="${user}" method="POST" enctype="utf8">
+            <form class="form-register" action="/" th:object="${Usuario}" method="POST" enctype="utf8">
                 <h2 class="form-register-heading">Registro</h2>
                 <label for="inputUserName" class="sr-only">Nome de Usuário</label>
-                <input type="text" id="inputUserName" class="form-control" placeholder="Nome de Usuário" required autofocus>
+                <input type="text" id="inputUserName" class="form-control" placeholder="Nome de Usuário" th:field="*{userName}" required autofocus>
                 <label for="inputEmail" class="sr-only">Email</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" th:field="*{email}" required>
                 <label for="inputPassword" class="sr-only">Senha</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Senha" th:field="*{password}" required>
                 <label for="inputPassword" class="sr-only">Confirmar Senha</label>
-                <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Confirmar Senha" required>
+                <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Confirmar Senha" th:field="*{matchingPassword}" required>
                 <div class="text-center">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" th:href="@{/templates/index.html}">Registrar</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" th:href="@{/templates/login.html}" th: onclick="location.href = 'lista.html'" th:text="#{label.form.submit}">Registrar</button>
                 </div>
             </form>
             <div class="text-center">
