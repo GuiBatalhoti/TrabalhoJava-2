@@ -1,57 +1,129 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Main.Model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+import jakarta.persistence.*;
 
+/**
+ *
+ * @author Nozawa
+ */
 @Entity
-public class Manga implements Serializable{
+@Table(name = "manga")
+//@NamedQueries({
+//    @NamedQuery(name = "Manga.findAll", query = "SELECT m FROM Manga_1 m"),
+//    @NamedQuery(name = "Manga.findByIdManga", query = "SELECT m FROM Manga_1 m WHERE m.idManga = :idManga"),
+//    @NamedQuery(name = "Manga.findByTitle", query = "SELECT m FROM Manga_1 m WHERE m.title = :title"),
+//    @NamedQuery(name = "Manga.findByAuthor", query = "SELECT m FROM Manga_1 m WHERE m.author = :author"),
+//    @NamedQuery(name = "Manga.findByPublicationDate", query = "SELECT m FROM Manga_1 m WHERE m.publicationDate = :publicationDate"),
+//    @NamedQuery(name = "Manga.findByNumChapter", query = "SELECT m FROM Manga_1 m WHERE m.numChapter = :numChapter"),
+//    @NamedQuery(name = "Manga.findByAutor", query = "SELECT m FROM Manga_1 m WHERE m.autor = :autor"),
+//    @NamedQuery(name = "Manga.findByData", query = "SELECT m FROM Manga_1 m WHERE m.data = :data"),
+//    @NamedQuery(name = "Manga.findByNome", query = "SELECT m FROM Manga_1 m WHERE m.nome = :nome")})
+public class Manga implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long idManga;
-    @NotEmpty
-    private String nome;
-    @NotEmpty
-    private String autor;
-    @NotEmpty
-    private String data;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_manga")
+    private Integer idManga;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "author")
+    private String author;
+    @Column(name = "publication_date")
+    @Temporal(TemporalType.DATE)
+    private Date publicationDate;
+    @Column(name = "num_chapter")
+    private Integer numChapter;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "manga")
+    private Collection<MangaList> mangaListCollection;
 
-    public Manga(){
-        
-    }
-    
-    public long getIdManga() {
-        return idManga;
+    public Manga() {
     }
 
-    public void setIdManga(long idManga) {
+    public Manga(Integer idManga) {
         this.idManga = idManga;
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getIdManga() {
+        return idManga;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdManga(Integer idManga) {
+        this.idManga = idManga;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getData() {
-        return data;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setAuthor(String author) {
+        this.author = author;
     }
-    
-    
+
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public Integer getNumChapter() {
+        return numChapter;
+    }
+
+    public void setNumChapter(Integer numChapter) {
+        this.numChapter = numChapter;
+    }
+
+    public Collection<MangaList> getMangaListCollection() {
+        return mangaListCollection;
+    }
+
+    public void setMangaListCollection(Collection<MangaList> mangaListCollection) {
+        this.mangaListCollection = mangaListCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idManga != null ? idManga.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Manga)) {
+            return false;
+        }
+        Manga other = (Manga) object;
+        if ((this.idManga == null && other.idManga != null) || (this.idManga != null && !this.idManga.equals(other.idManga))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Main.Model.Manga[ idManga=" + idManga + " ]";
+    }
     
 }

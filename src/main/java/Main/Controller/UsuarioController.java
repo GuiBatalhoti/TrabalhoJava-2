@@ -1,6 +1,6 @@
 package Main.Controller;
 
-import Main.Model.Usuario;
+import Main.Model.Users;
 import Main.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,28 +16,28 @@ public class UsuarioController {
     private UsuarioRepository ur;
     
     //Redireciona a requisição HTTP para esse método
-    @RequestMapping("/cadastrarUsuario") 
+    @RequestMapping("/registration") 
     public String formCadastroUsuario() {
-        return "formUsuario";
+        return "registration";
     }
     
-    //Redireciona a requisição HTTP para esse método
-    @GetMapping("/cadastrarUsuario") 
-    public String cadastroUsuario() {
-        return "formUsuario";
-    }
-
-//    @PostMapping("/cadastrarUsuario")
-//    public String formCadastroUsuario(@Valid Usuario usuario,
-//            BindingResult result, RedirectAttributes attributes) {
-//        if (result.hasErrors()) {
-//            attributes.addFlashAttribute(
-//                    "mensagem", "Usuario invalido!");
-//            return "redirect:/cadastrarUsuario";
-//        }
-//        ur.save(usuario);
-//        return "redirect:/usuario";
+//    //Redireciona a requisição HTTP para esse método
+//    @GetMapping("/cadastrarUsuario") 
+//    public String cadastroUsuario() {
+//        return "formUsuario";
 //    }
+
+    @PostMapping("/registration")
+    public String formCadastroUsuario(@Valid Users usuario,
+            BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute(
+                    "mensagem", "Usuario invalido!");
+            return "redirect:/registration";
+        }
+        ur.save(usuario);
+        return "redirect:/usuario/"+usuario.getUserName();
+    }
     
     @RequestMapping("/usuario")
     @PreAuthorize("isAuthenticated()")
@@ -48,9 +48,9 @@ public class UsuarioController {
     
     @RequestMapping("/usuario/{username}")
     public ModelAndView detalhesManga(@PathVariable("username") String username) {
-        Usuario usuario = ur.findByUsername(username);
+        Users usuario = ur.findByUsername(username);
         ModelAndView mv = new ModelAndView("detalhesUsuario");
-        mv.addObject("usuario", usuario);
+        mv.addObject("index", usuario);
         return mv;
     }
 }

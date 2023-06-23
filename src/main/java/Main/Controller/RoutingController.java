@@ -9,4 +9,9 @@ public class RoutingController {
     public String index(){
         return "login";
     }
+    
+    @GetMapping("/index")
+    public String index1(){
+        return "index";
+    }
 }

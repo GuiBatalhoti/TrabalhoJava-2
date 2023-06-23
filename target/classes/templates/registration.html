@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/registration.css">
     <body>
         <div class="container">
             <form class="form-register" action="/" th:object="${user}" method="POST" enctype="utf8">
@@ -24,8 +24,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
                 <label for="inputPassword" class="sr-only">Confirmar Senha</label>
                 <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Confirmar Senha" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit" th:href="@{/templates/login.html}">Registrar</button>
+                <div class="text-center">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" th:href="@{/templates/index.html}">Registrar</button>
+                </div>
             </form>
+            <div class="text-center">
+                <p class="form-register-heading" id="possuiConta_text">Já possui uma conta?</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="location.href = 'login.html';">Login</button>
+            </div>
         </div>
 
     </body>
