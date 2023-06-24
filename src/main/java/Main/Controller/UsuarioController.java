@@ -5,7 +5,9 @@ import Main.Repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,21 +22,29 @@ public class UsuarioController {
     private UsuarioRepository ur;
     
     //Redireciona a requisição HTTP para esse método
-    @RequestMapping("/registration") 
-    public String formRegistration() {
+    @GetMapping("/registration")
+    public String formRegistration(Model model) {
+        model.addAttribute("user", new Users());
         return "registration";
     }
 
-    @PostMapping("/registration")
-    public String formRegistration(@Valid Users usuario,
-            BindingResult result, RedirectAttributes attributes) {
+    @GetMapping("/registrationSuccess")
+    public String formRegistrationSuccess() {
+        return "registrationSuccess";
+    }
+
+    @PostMapping("/registrationSuccess")
+    public String formRegistration(@Valid Users user, BindingResult result, RedirectAttributes attributes) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
         if (result.hasErrors()) {
-            attributes.addFlashAttribute(
-                    "mensagem", "Usuario invalido!");
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
             return "redirect:/registration";
         }
-        ur.save(usuario);
-        return "redirect:/usuario/"+usuario.getUserName();
+        ur.save(user);
+        attributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso!");
+        return "redirect:/registrationSuccess";
     }
     
     @RequestMapping("/usuario")
