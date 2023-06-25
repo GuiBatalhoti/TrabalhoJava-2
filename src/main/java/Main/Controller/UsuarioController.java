@@ -1,7 +1,7 @@
 package Main.Controller;
 
 import Main.Model.Users;
-import Main.Repository.UsuarioRepository;
+import Main.Repository.UsersRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class UsuarioController {
     @Autowired
-    private UsuarioRepository ur;
+    private UsersRepository ur;
     
     //Redireciona a requisição HTTP para esse método
     @GetMapping("/registration")
@@ -46,14 +46,14 @@ public class UsuarioController {
         attributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso!");
         return "redirect:/registrationSuccess";
     }
-    
+
     @RequestMapping("/usuario")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView formUser() {
         ModelAndView mv = new ModelAndView("login");
         return mv;
     }
-    
+
     @GetMapping("/usuario/{username}")
     public ModelAndView detalhesManga(@PathVariable("username") String username) {
         Users usuario = ur.findByUsername(username);
