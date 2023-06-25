@@ -50,7 +50,7 @@ public class UsuarioController {
     @RequestMapping("/usuario")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView formUser() {
-        ModelAndView mv = new ModelAndView("login");
+        ModelAndView mv = new ModelAndView("detalhesUsuario");
         return mv;
     }
 
