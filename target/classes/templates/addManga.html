@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Adicionar Mangá</title>
+    </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/addManga.css">
+    <body>
+        <div class="container">
+            <form class="form-add">
+                <h2 class="form-add-heading">Adicionar Mangá</h2>
+                <label for="inputName" class="sr-only">Nome</label>
+                <input type="text" id="inputName" class="form-control" placeholder="Nome" required autofocus>
+                <label for="inputAuthor" class="sr-only">Autor</label>
+                <input type="text" id="inputAuthor" class="form-control" placeholder="Autor" required>
+                <label for="inputVolumes" class="sr-only">Volumes</label>
+                <input type="number" id="inputVolumes" class="form-control" placeholder="Volumes" required>
+                <label for="inputDataPublicacao" class="sr-only">Data de Publicação</label>
+                <input type="date" id="inputDataPublicacao" class="form-control" placeholder="Data de Publicação" required>
+                <div class="text-center">
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Adicionar</button>
+                </div>
+            </form>
+
+        </div>
+    </body>
+</html>

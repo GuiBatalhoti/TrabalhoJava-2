@@ -17,6 +17,7 @@ import java.util.Collection;
 
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
 
+@Service
 public class UserDetailsServiceImplement implements UserDetailsService{
 
     @Autowired
@@ -28,6 +29,6 @@ public class UserDetailsServiceImplement implements UserDetailsService{
         if(user == null){
             throw new UsernameNotFoundException("User not found");
         }
-        return new UserDetailsImplement(user);
+        return user;
     }
 }

@@ -11,4 +11,9 @@ public class RoutingController {
     public String login() {
         return "login" ;
     }
+    
+    @GetMapping(value = {"/teste"})
+    public String teste() {
+        return "teste" ;
+    }
 }
