@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="../static/css/addManga.css">
     <body>
         <div class="container">
-            <form class="form-add">
-                <h2 class="form-add-heading">Adicionar Mangá</h2>
+            <form th:action="@{/addMangaSuccess}" th:object="${manga}" method="POST" class="form-register" enctype="utf8">
+                <h2 class="form-register-heading">Adicionar Mangá</h2>
                 <label for="inputName" class="sr-only">Nome</label>
-                <input type="text" id="inputName" class="form-control" placeholder="Nome" required autofocus>
+                <input type="text" id="inputName" class="form-control" placeholder="Nome" th:field="*{title}" required autofocus>
                 <label for="inputAuthor" class="sr-only">Autor</label>
-                <input type="text" id="inputAuthor" class="form-control" placeholder="Autor" required>
+                <input type="text" id="inputAuthor" class="form-control" placeholder="Autor" th:field="*{author}"required>
                 <label for="inputVolumes" class="sr-only">Volumes</label>
-                <input type="number" id="inputVolumes" class="form-control" placeholder="Volumes" required>
+                <input type="number" id="inputVolumes" class="form-control" placeholder="Volumes" th:field="*{numChapter}" required>
                 <label for="inputDataPublicacao" class="sr-only">Data de Publicação</label>
-                <input type="date" id="inputDataPublicacao" class="form-control" placeholder="Data de Publicação" required>
+                <input type="date" id="inputDataPublicacao" class="form-control" placeholder="Data de Publicação" th:field="*{publicationDate}" required>
                 <div class="text-center">
                     <br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Adicionar</button>
