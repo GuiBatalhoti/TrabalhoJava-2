@@ -10,15 +10,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * Users class
+ *
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
+ */
 @Entity
 @Table(name = "users")
-//@NamedQueries({
-//    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
-//    @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.userName = :userName"),
-//    @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"),
-//    @NamedQuery(name = "Users.findByPasswd", query = "SELECT u FROM Users u WHERE u.passwd = :passwd")})
 public class Users implements UserDetails, Serializable {
 
+    /**
+     * Attributes
+     */
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +40,15 @@ public class Users implements UserDetails, Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
     private Collection<MangaList> mangaListCollection;
 
+    /**
+     * Constructor
+     */
     public Users() {
     }
 
+    /**
+     * Getters and Setters
+     */
     public Integer getIdUser() {
         return idUser;
     }
@@ -81,6 +91,9 @@ public class Users implements UserDetails, Serializable {
         this.mangaListCollection = mangaListCollection;
     }
 
+    /**
+     * User Datails methods
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority("USER"));
@@ -106,6 +119,9 @@ public class Users implements UserDetails, Serializable {
         return true;
     }
 
+    /**
+     * HashCode and Equals methods
+     */
     @Override
     public int hashCode() {
         int hash = 0;

@@ -9,12 +9,17 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 
 /**
+ * Entity MangaList
  *
- * @author Nozawa
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
  */
 @Embeddable
 public class MangaListPK implements Serializable {
 
+    /**
+     * Attributes
+     */
     @Basic(optional = false)
     @Column(name = "id_user")
     private int idUser;
@@ -22,6 +27,9 @@ public class MangaListPK implements Serializable {
     @Column(name = "id_manga")
     private int idManga;
 
+    /**
+     * Contructors
+     */
     public MangaListPK() {
     }
 
@@ -30,6 +38,9 @@ public class MangaListPK implements Serializable {
         this.idManga = idManga;
     }
 
+    /**
+     * Setters and Getters
+     */
     public int getIdUser() {
         return idUser;
     }
@@ -46,6 +57,9 @@ public class MangaListPK implements Serializable {
         this.idManga = idManga;
     }
 
+    /**
+     * HashCode and Equals
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -70,6 +84,9 @@ public class MangaListPK implements Serializable {
         return true;
     }
 
+    /**
+     * toString
+     */
     @Override
     public String toString() {
         return "Main.Model.MangaListPK[ idUser=" + idUser + ", idManga=" + idManga + " ]";

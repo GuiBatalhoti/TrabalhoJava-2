@@ -12,23 +12,18 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
+ * Entity class Manga
  *
- * @author Nozawa
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
  */
 @Entity
 @Table(name = "manga")
-//@NamedQueries({
-//    @NamedQuery(name = "Manga.findAll", query = "SELECT m FROM Manga_1 m"),
-//    @NamedQuery(name = "Manga.findByIdManga", query = "SELECT m FROM Manga_1 m WHERE m.idManga = :idManga"),
-//    @NamedQuery(name = "Manga.findByTitle", query = "SELECT m FROM Manga_1 m WHERE m.title = :title"),
-//    @NamedQuery(name = "Manga.findByAuthor", query = "SELECT m FROM Manga_1 m WHERE m.author = :author"),
-//    @NamedQuery(name = "Manga.findByPublicationDate", query = "SELECT m FROM Manga_1 m WHERE m.publicationDate = :publicationDate"),
-//    @NamedQuery(name = "Manga.findByNumChapter", query = "SELECT m FROM Manga_1 m WHERE m.numChapter = :numChapter"),
-//    @NamedQuery(name = "Manga.findByAutor", query = "SELECT m FROM Manga_1 m WHERE m.autor = :autor"),
-//    @NamedQuery(name = "Manga.findByData", query = "SELECT m FROM Manga_1 m WHERE m.data = :data"),
-//    @NamedQuery(name = "Manga.findByNome", query = "SELECT m FROM Manga_1 m WHERE m.nome = :nome")})
 public class Manga implements Serializable {
 
+    /**
+     * Attributes
+     */
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +45,10 @@ public class Manga implements Serializable {
     
     @Column(name = "description")
     private String description;
-    
+
+    /**
+     * Constructors
+     */
     public Manga() {
     }
 
@@ -58,6 +56,9 @@ public class Manga implements Serializable {
         this.idManga = idManga;
     }
 
+    /**
+     * Getters and Setters
+     */
     public Integer getIdManga() {
         return idManga;
     }
@@ -113,7 +114,11 @@ public class Manga implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
+    /**
+     * Hashcode and Equals
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -134,6 +139,10 @@ public class Manga implements Serializable {
         return true;
     }
 
+    /**
+     * toString
+     * @return string
+     */
     @Override
     public String toString() {
         return "Main.Model.Manga[ idManga=" + idManga + " ]";

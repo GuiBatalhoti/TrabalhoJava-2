@@ -11,19 +11,18 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
+ * Entity MangaList
  *
- * @author Nozawa
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
  */
 @Entity
 @Table(name = "manga_list")
-//@NamedQueries({
-//    @NamedQuery(name = "MangaList.findAll", query = "SELECT m FROM MangaList m"),
-//    @NamedQuery(name = "MangaList.findByIdUser", query = "SELECT m FROM MangaList m WHERE m.mangaListPK.idUser = :idUser"),
-//    @NamedQuery(name = "MangaList.findByIdManga", query = "SELECT m FROM MangaList m WHERE m.mangaListPK.idManga = :idManga"),
-//    @NamedQuery(name = "MangaList.findByDescription", query = "SELECT m FROM MangaList m WHERE m.description = :description"),
-//    @NamedQuery(name = "MangaList.findByDue", query = "SELECT m FROM MangaList m WHERE m.due = :due")})
 public class MangaList implements Serializable {
 
+    /**
+     * Attributes
+     */
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected MangaListPK mangaListPK;
@@ -41,6 +40,9 @@ public class MangaList implements Serializable {
     @ManyToOne(optional = false)
     private Users users;
 
+    /**
+     * Contructors
+     */
     public MangaList() {
     }
 
@@ -56,6 +58,9 @@ public class MangaList implements Serializable {
         return mangaListPK;
     }
 
+    /**
+     * Setters and Getters
+     */
     public void setMangaListPK(MangaListPK mangaListPK) {
         this.mangaListPK = mangaListPK;
     }
@@ -100,6 +105,9 @@ public class MangaList implements Serializable {
         this.users = users;
     }
 
+    /**
+     * HashCode and Equals
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -120,6 +128,9 @@ public class MangaList implements Serializable {
         return true;
     }
 
+    /**
+     * toString
+     */
     @Override
     public String toString() {
         return "Main.Model.MangaList[ mangaListPK=" + mangaListPK + " ]";

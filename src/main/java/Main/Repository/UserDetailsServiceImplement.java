@@ -17,12 +17,29 @@ import java.util.Collection;
 
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
 
+/**
+ * Classe de implementação do UserDetailsService
+ * @see UserDetailsService
+ *
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
+ */
 @Service
 public class UserDetailsServiceImplement implements UserDetailsService{
 
+    /**
+     * Repositório de usuários
+     * @see UsersRepository
+     */
     @Autowired
     private UsersRepository usersRepository;
 
+    /**
+     * Método que carrega o usuário pelo username
+     * @param username
+     * @return datalhes do Usuário
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = usersRepository.findByUsername(username);

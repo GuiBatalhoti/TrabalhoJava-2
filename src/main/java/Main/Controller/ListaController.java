@@ -27,15 +27,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Classe responsável por controlar as requisições relacionadas a lista de mangas
+ * do usuário.
+ *
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
+ */
 @Controller
 public class ListaController {
-    
+
+    /**
+     * Repositório de mangas.
+     */
     @Autowired
     private MangaRepository mr;
-    
+
+    /**
+     * Repositório de listas de mangas.
+     */
     @Autowired
     private MangaListRepository mlr;
 
+    /**
+     * Método responsável por retornar a página de listagem de mangas.
+     *
+     * @param idManga id do manga a ser listado
+     * @return ModelAndView
+     */
     @GetMapping("/followManga/{idManga}")
     public String followManga(@PathVariable("idManga") int idManga) {
         MangaList mangaList = new MangaList();
@@ -53,6 +72,11 @@ public class ListaController {
         return "redirect:/lista";
     }
 
+    /**
+     * Método responsável por retornar a página de listagem de mangas.
+     * @param idManga
+     * @return ModelAndView
+     */
     @GetMapping("/meusManga/{idManga}")
     public ModelAndView updateMangaList(@PathVariable("idManga") int idManga) {
         //busca a lista pelo id do usuario e do manga
@@ -71,7 +95,12 @@ public class ListaController {
         
         return mv;
     }
-    
+
+    /**
+     * Método responsável por retornar a página de listagem de mangas.
+     * @param formData
+     * @return
+     */
     @RequestMapping(value="/updateMangaList", method=RequestMethod.POST, 
         consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String updateMangaList(@RequestBody MultiValueMap<String, String> formData) {
@@ -107,9 +136,11 @@ public class ListaController {
             return "redirect:/meusManga";
         }
     }
-    
-    
-    
+
+    /**
+     * Método responsável por retornar a página de listagem de mangas.
+     * @return ModelAndView
+     */
     @GetMapping("/meusManga")
     public ModelAndView myList() {
         //busca a lista pelo id do usuario

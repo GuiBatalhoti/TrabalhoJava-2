@@ -16,23 +16,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Classe responsável por controlar as requisições HTTP relacionadas ao usuário
+ *
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
+ */
 @Controller
 public class UsuarioController {
+
+    /**
+     * Injeção de dependência da classe UsersRepository
+     */
     @Autowired
     private UsersRepository ur;
-    
-    //Redireciona a requisição HTTP para esse método
+
+    /**
+     * Método responsável por retornar a página de login
+     * @return página de login
+     */
     @GetMapping("/registration")
     public String formRegistration(Model model) {
         model.addAttribute("user", new Users());
         return "registration";
     }
 
+    /**
+     * Método responsável por retornar a página cadastro bem sucedido
+     * @return registro de usuário bem sucedido
+     */
     @GetMapping("/registrationSuccess")
     public String formRegistrationSuccess() {
         return "registrationSuccess";
     }
 
+    /**
+     * Método responsável por validar o registro de um usuário
+     * @param user usuário a ser registrado
+     * @param result resultado da validação
+     * @param attributes atributos da requisição
+     * @see Users
+     * @see BindingResult
+     * @see RedirectAttributes
+     */
     @PostMapping("/registrationSuccess")
     public String formRegistration(@Valid Users user, BindingResult result, RedirectAttributes attributes) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -47,6 +73,11 @@ public class UsuarioController {
         return "redirect:/registrationSuccess";
     }
 
+    /**
+     * Método responsável por retornar a página de usuario
+     * @return página de usuario
+     * @see ModelAndView
+     */
     @RequestMapping(value = {"/usuario", "/usuario/"})
     @PreAuthorize("isAuthenticated()")
     public ModelAndView formUser() {
@@ -54,6 +85,11 @@ public class UsuarioController {
         return mv;
     }
 
+    /**
+     * Método responsável por retornar a página de usuario
+     * @return página de usuario
+     * @see ModelAndView
+     */
     @GetMapping("/usuario/{username}")
     public ModelAndView detalhesManga(@PathVariable("username") String username) {
         Users usuario = ur.findByUsername(username);

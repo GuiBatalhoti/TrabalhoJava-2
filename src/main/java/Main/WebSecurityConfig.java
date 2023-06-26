@@ -17,22 +17,38 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+/**
+ * Classe de configuração do Spring Security
+ *
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
+ */
 @Configuration
 @EnableMethodSecurity
 public class WebSecurityConfig {
-    @Autowired
-    private DataSource dataSource;
 
+    /**
+     * Método que configura o Spring Security para utilizar os detalhes de usuário implementados
+     * @return UserDetailsServiceImplement
+     */
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImplement();
     }
 
+    /**
+     * Método que configura o Spring Security para utilizar o BCryptPasswordEncoder
+     * @return BCryptPasswordEncoder
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Método que configura o Spring Security para utilizar o DaoAuthenticationProvider
+     * @return DaoAuthenticationProvider
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -42,6 +58,13 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
+    /**
+     * Método que configura o Spring Security para utilizar o DaoAuthenticationProvider
+     * @param http
+     * @see HttpSecurity
+     * @return SecurityFilterChain
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http.csrf().disable().

@@ -15,12 +15,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Classe responsável por controlar as requisições HTTP relacionadas ao mangá.
+ *
+ * @author - GuiBatalhoti
+ * @author - Gabriel Nozawa
+ */
 @Controller
 public class MangaController {
+
+    /**
+     * Atributo responsável por injetar a dependência do repositório do mangá.
+     */
     @Autowired
     private MangaRepository mr;
     
-    //Redireciona a requisição HTTP para esse método
+    /**
+     * Método responsável por retornar a página de cadastro de mangá.
+     * @param model
+     * @return
+     */
     @GetMapping("/addManga")
     public String formRegistration(Model model) {
         model.addAttribute("manga", new Manga());
@@ -32,6 +46,13 @@ public class MangaController {
         return "addMangaSuccess";
     }
 
+    /**
+     * Método responsável por cadastrar um mangá.
+     * @param manga
+     * @param result
+     * @param attributes
+     * @return retorna a página de cadastro de mangá.
+     */
     @PostMapping("/addMangaSuccess")
     public String formRegistration(@Valid Manga manga, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
@@ -42,7 +63,11 @@ public class MangaController {
         attributes.addFlashAttribute("mensagem", "Mangá cadastrado com sucesso!");
         return "redirect:/lista";
     }
-    
+
+    /**
+     * Método responsável por retornar a página de edição de mangá.
+     * @return Model and View
+     */
     @RequestMapping("/manga")
     public ModelAndView listaManga() {
         ModelAndView mv = new ModelAndView("teste");
@@ -51,7 +76,11 @@ public class MangaController {
 
         return mv;
     }
-    
+
+    /**
+     * Método responsável por retornar a página de edição de mangá.
+     * @return Model and View
+     */
     @RequestMapping("/todosManga")
     public ModelAndView todosManga() {
         ModelAndView mv = new ModelAndView("teste");
@@ -60,6 +89,11 @@ public class MangaController {
         return mv;
     }
 
+    /**
+     * Método responsável por retornar a página de edição de mangá.
+     * @param idManga
+     * @return Model and View
+     */
     @RequestMapping("/manga/{idManga}")
     public ModelAndView detalhesManga(@PathVariable("idManga") long idManga) {
         Manga manga = mr.findByIdManga(idManga);
@@ -67,7 +101,11 @@ public class MangaController {
         mv.addObject("manga", manga);
         return mv;
     }
-    
+
+    /**
+     * Método responsável por retornar a página de edição de mangá.
+     * @return Model and View
+     */
     @RequestMapping("/lista")
     public ModelAndView lista() {
         ModelAndView mv = new ModelAndView("lista");
