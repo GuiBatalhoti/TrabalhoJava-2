@@ -115,5 +115,13 @@ public class MangaList implements Serializable {
     public String toString() {
         return "Main.Model.MangaList[ mangaListPK=" + mangaListPK + " ]";
     }
+
+    public Integer getDueChapters() {
+        return dueChapters;
+    }
+
+    public void setDueChapters(Integer dueChapters) {
+        this.dueChapters = dueChapters;
+    }
     
 }

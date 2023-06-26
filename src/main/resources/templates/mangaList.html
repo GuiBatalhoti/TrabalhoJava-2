@@ -28,7 +28,7 @@ and open the template in the editor.
                 <h2 class="form-register-heading">Atualizar Lista</h2>
                 <label for="inputVolumesLidos" class="sr-only">Capítulos pendentes</label><br>
                 <input type="number" id="inputVolumesLidos" class="form-control" th:field="*{dueChapters}" required><br>
-                <label for="inputDataPendente" class="sr-only">Data de Publicação</label><br>
+                <label for="inputDataPendente" class="sr-only">Data alvo</label><br>
                 <input type="date" id="inputDataPendente" class="form-control" pattern="dd/MM/yyyy" th:field="*{due}"  required><br>
                 <label for="inputDescricao" class="sr-only">Descrição</label><br>
                 <input type="text" id="inputDescricao" class="form-control" placeholder="Descricao" th:field="*{description}"  required><br>

@@ -76,4 +76,22 @@ public class ListaController {
         return "redirect:/lista";
     }
     
+    @GetMapping("/usuario/meusManga")
+    public ModelAndView myList() {
+        //busca a lista pelo id do usuario e do manga
+        Object principal = SecurityContextHolder. getContext().getAuthentication().getPrincipal();
+        Users user = (Users) principal;
+        MangaListPK mlPK = new MangaListPK(user.getIdUser(), idManga);
+        MangaList mangaList = mlr.findByMangaListPK(mlPK);      
+        
+        //recupera o manga que a lista referencia
+        Manga manga = mr.findByIdManga(idManga);
+
+        //cria um ModelAndView com o mangaList encontrado
+        ModelAndView mv = new ModelAndView("mangaList");
+        mv.addObject("mangaList", mangaList);
+        mv.addObject("manga", manga);
+        
+        return mv;
+    }
 }

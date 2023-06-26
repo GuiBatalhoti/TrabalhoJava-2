@@ -47,7 +47,7 @@ public class UsuarioController {
         return "redirect:/registrationSuccess";
     }
 
-    @RequestMapping("/usuario")
+    @RequestMapping(value = {"/usuario", "/usuario/"})
     @PreAuthorize("isAuthenticated()")
     public ModelAndView formUser() {
         ModelAndView mv = new ModelAndView("detalhesUsuario");
