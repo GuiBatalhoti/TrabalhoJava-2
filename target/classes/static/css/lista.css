@@ -11,3 +11,7 @@ body {
     border-radius: 20px;
     padding: 10px;
 }
+
+a{
+    text-decoration: none;
+}

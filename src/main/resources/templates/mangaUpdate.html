@@ -26,9 +26,8 @@ and open the template in the editor.
             <div class="listDescription">
                 <form th:action="@{/updateMangaList}" th:object="${mangaList}" method="POST" class="form-register" enctype="utf8">
                     <h2 class="form-register-heading">Atualizar Lista</h2>
-                    <label for="inputVolumesLidos" class="sr-only">Capítulos pendentes</label>
                     <input type="hidden" name="manga" th:field="*{manga}" th:value="${thisManga}">
-                    <label for="inputDataPendente" class="sr-only">Data da leitura</label>
+                    <label for="inputDataPendente" class="sr-only">Capítulos lidos</label>
                     <input type="number" id="inputVolumesLidos" class="form-control" th:field="*{dueChapters}" required>
                     <label for="inputDataPendente" class="sr-only">Data da leitura</label>
                     <input type="date" id="inputDataPendente" class="form-control" pattern="dd/MM/yyyy" th:field="*{due}"  required>

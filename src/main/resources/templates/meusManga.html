@@ -21,19 +21,20 @@
                         </div>
                     </div>
                 </nav>
-                <table class="table table-striped">
+                <table class="table table-hover">
                     <thead>
                         <th>Título</th>
                         <th>Autor</th>
                         <th>Data de publicação</th>
                         <th>Número capítulos: </th>
                         <th>Capítulos lidos: </th>
+                        <th></th>
                     </thead>
                     <tbody th:each="mangaL : ${mangaList}">
                         <td><a th:href="@{/manga/{id}(id=${mangaL.manga.idManga})}">
                                 <span th:text="${mangaL.manga.title}"></span></a></td>
                         <td><span th:text="${mangaL.manga.author}"></span></td>
-                        <td><span th:text="${mangaL.manga.publicationDate}"></span></td>
+                        <td><span th:text="${#dates.format(mangaL.manga.publicationDate, 'dd/MM/yyyy')}"></span></td>
                         <td><span th:text="${mangaL.manga.numChapter}"></span></td>
                         <td><span th:text="${mangaL.dueChapters != null} ? ${mangaL.dueChapters} : '0'"></span></td>
 

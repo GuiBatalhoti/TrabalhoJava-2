@@ -19,7 +19,7 @@ and open the template in the editor.
                 <div class="row">
                     <p><b>Título:</b> <span th:text="${manga.title}"></span></p>
                     <p><b>Autor:</b> <span th:text="${manga.author}"></span></p>
-                    <p><b>Data publicação:</b> <span th:text="${manga.publicationDate}"></span></p>
+                    <p><b>Data publicação:</b> <span th:text="${#dates.format(manga.publicationDate, 'dd/MM/yyyy')}"></span></p>
                     <p><b>Número capítulos:</b> <span th:text="${manga.numChapter}"></span></p>
                     <p><b>Descrição:</b> <span th:text="${manga.description}"></span></p>
                 </div>

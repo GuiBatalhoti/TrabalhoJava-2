@@ -38,7 +38,7 @@
                             </a>
                         </td>
                         <td><span th:text="${manga.author}"></span></td>
-                        <td><span th:text="${manga.publicationDate}"></span></td>
+                        <td><span th:text="${#dates.format(manga.publicationDate, 'dd/MM/yyyy')}"></span></td>
                         <td><span th:text="${manga.numChapter}"></span></td>
                         <td><a th:href="@{/followManga/{id}(id=${manga.idManga})}" class="btn btn-lg btn-primary btn-block" >Seguir</td>
                     </tbody>
