@@ -11,26 +11,21 @@ import Main.Model.MangaListPK;
 import Main.Model.Users;
 import Main.Repository.MangaListRepository;
 import Main.Repository.MangaRepository;
-import jakarta.validation.Valid;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ListaController {
@@ -40,13 +35,13 @@ public class ListaController {
     
     @Autowired
     private MangaListRepository mlr;
-    
+
     @GetMapping("/followManga/{idManga}")
     public String followManga(@PathVariable("idManga") int idManga) {
         MangaList mangaList = new MangaList();
         Manga manga = mr.findByIdManga(idManga);
         //associa o manga para a lista
-        
+
         Object principal = SecurityContextHolder. getContext().getAuthentication().getPrincipal();
         //associa o manga ao usuario
         Users user = (Users) principal;
@@ -57,7 +52,7 @@ public class ListaController {
         mlr.save(mangaList);
         return "redirect:/lista";
     }
-    
+
     @GetMapping("/meusManga/{idManga}")
     public ModelAndView updateMangaList(@PathVariable("idManga") int idManga) {
         //busca a lista pelo id do usuario e do manga
@@ -70,7 +65,7 @@ public class ListaController {
         Manga manga = mr.findByIdManga(idManga);
 
         //cria um ModelAndView com o mangaList encontrado
-        ModelAndView mv = new ModelAndView("mangaList");
+        ModelAndView mv = new ModelAndView("mangaUpdate");
         mv.addObject("mangaList", mangaList);
         mv.addObject("thisManga", manga);
         

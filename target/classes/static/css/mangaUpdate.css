@@ -1,0 +1,35 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.form-update {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-update {
+    margin-bottom: 10px;
+}
+
+.form-update {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.mangaDescription {
+    background: rgba(180, 173, 173, 0.55);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.listDescription {
+    padding: 10px;
+}

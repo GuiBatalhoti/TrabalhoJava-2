@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Mangás</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista de Mangás</title>
+    </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lista.css}">
     <body>
         <div class="container">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <h2 class="navbar-brand">Lista de Mangás</h2>
+            <div class="content">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h2 class="navbar-brand">Lista de Mangás</h2>
+                        </div>
+                        <div class="navbar-header">
+                            <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href = 'addManga';">Adicionar Mangá</button>
+                        </div>
+                        <div class="navbar-header">
+                            <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href = 'meusManga';">Meus Mangás</button>
+                        </div>
                     </div>
-                    <div class="navbar-header">
-                        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href = 'addManga';">Adicionar Mangá</button>
-                    </div>
-                    <div class="navbar-header">
-                        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href = 'meusManga';">Meus Mangá</button>
-                    </div>
-                </div>
-            </nav>
-
-        <div>
-            <table>
-                <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Data de publicação</th>
-                    <th>Número capítulos: </th>
-                </tr>
-                <tr th:each="manga : ${itManga}">
-                    <td><a th:href="@{/manga/{id}(id=${manga.idManga})}">
-                            <span th:text="${manga.title}"></span></a></td>
-                    <td><span th:text="${manga.author}"></span></td>
-                    <td><span th:text="${manga.publicationDate}"></span></td>
-                    <td><span th:text="${manga.numChapter}"></span></td>
-                    <td><a th:href="@{/followManga/{id}(id=${manga.idManga})}">Seguir</td>
-                </tr>
-            </table>
-        </div>
+                </nav>
+                <table class="table table-hover">
+                    <thead>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Data de publicação</th>
+                        <th>Número capítulos</th>
+                        <th></th>
+                    </thead>
+                    <tbody th:each="manga : ${itManga}">
+                        <td>
+                            <a th:href="@{/manga/{id}(id=${manga.idManga})}">
+                                <span th:text="${manga.title}"></span>
+                            </a>
+                        </td>
+                        <td><span th:text="${manga.author}"></span></td>
+                        <td><span th:text="${manga.publicationDate}"></span></td>
+                        <td><span th:text="${manga.numChapter}"></span></td>
+                        <td><a th:href="@{/followManga/{id}(id=${manga.idManga})}" class="btn btn-lg btn-primary btn-block" >Seguir</td>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Atualizar Manga</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mangaUpdate.css}">
+    <body>
+        <div class="container">
+            <div class="mangaDescription">
+                <h2>Manga</h2>
+                <p>Título: <span th:text="${thisManga.title}"></span></p>
+                <p>Autor: <span th:text="${thisManga.author}"></span></p>
+                <p>Data publicação: <span th:text="${thisManga.publicationDate}"></span></p>
+                <p>Número capítulos: <span th:text="${thisManga.numChapter}"></span></p>
+            </div>
+
+            <div class="listDescription">
+                <form th:action="@{/updateMangaList}" th:object="${mangaList}" method="POST" class="form-register" enctype="utf8">
+                    <h2 class="form-register-heading">Atualizar Lista</h2>
+                    <label for="inputVolumesLidos" class="sr-only">Capítulos pendentes</label>
+                    <input type="hidden" name="manga" th:field="*{manga}" th:value="${thisManga}">
+                    <label for="inputDataPendente" class="sr-only">Data da leitura</label>
+                    <input type="number" id="inputVolumesLidos" class="form-control" th:field="*{dueChapters}" required>
+                    <label for="inputDataPendente" class="sr-only">Data da leitura</label>
+                    <input type="date" id="inputDataPendente" class="form-control" pattern="dd/MM/yyyy" th:field="*{due}"  required>
+                    <label for="inputDescricao" class="sr-only">Descrição</label>
+                    <input type="text" id="inputDescricao" class="form-control" placeholder="Descricao" th:field="*{description}"  required>
+                    </br>
+                    <div class="text-center">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Adicionar</button>
+                    </div>
+                </form>
+            </div>
+            </br>
+            <div class="text-center">
+                <a href="/meusManga" class="btn btn-lg btn-primary btn-block">Voltar para Meus Manga</a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/registration.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}">
     <body>
         <div class="container">
             <form th:action="@{/registrationSuccess}" th:object="${user}" method="POST" class="form-register" enctype="utf8">

@@ -1,36 +1,46 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Meus Manga</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/meusManga.css}">
     <body>
-        <div>
-            <table>
-                <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Data de publicação</th>
-                    <th>Número capítulos: </th>
-                    <th>Capítulos lidos: </th>
-                </tr>
-                <tr th:each="mangaL : ${mangaList}">
-                    <td><a th:href="@{/manga/{id}(id=${mangaL.manga.idManga})}">
-                            <span th:text="${mangaL.manga.title}"></span></a></td>
-                    <td><span th:text="${mangaL.manga.author}"></span></td>
-                    <td><span th:text="${mangaL.manga.publicationDate}"></span></td>
-                    <td><span th:text="${mangaL.manga.numChapter}"></span></td>
-                    <td><span th:text="${mangaL.dueChapters != null} ? ${mangaL.dueChapters} : '0'"></span></td>
-                    
-                    <td><a th:href="@{/meusManga/{id}(id=${mangaL.manga.idManga})}">Atualizar</td>
-                </tr>
-            </table>
+        <div class="container">
+            <div class="content">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h2 class="navbar-brand">Meus Mangás</h2>
+                        </div>
+                        <div class="navbar-header">
+                            <a type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href = 'lista';">Todos Manga</a>
+                        </div>
+                    </div>
+                </nav>
+                <table class="table table-striped">
+                    <thead>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Data de publicação</th>
+                        <th>Número capítulos: </th>
+                        <th>Capítulos lidos: </th>
+                    </thead>
+                    <tbody th:each="mangaL : ${mangaList}">
+                        <td><a th:href="@{/manga/{id}(id=${mangaL.manga.idManga})}">
+                                <span th:text="${mangaL.manga.title}"></span></a></td>
+                        <td><span th:text="${mangaL.manga.author}"></span></td>
+                        <td><span th:text="${mangaL.manga.publicationDate}"></span></td>
+                        <td><span th:text="${mangaL.manga.numChapter}"></span></td>
+                        <td><span th:text="${mangaL.dueChapters != null} ? ${mangaL.dueChapters} : '0'"></span></td>
+
+                        <td><a th:href="@{/meusManga/{id}(id=${mangaL.manga.idManga})}" class="btn btn-lg btn-primary btn-block">Atualizar</td>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
