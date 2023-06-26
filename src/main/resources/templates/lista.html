@@ -31,6 +31,7 @@
                     <td><span th:text="${manga.author}"></span></td>
                     <td><span th:text="${manga.publicationDate}"></span></td>
                     <td><span th:text="${manga.numChapter}"></span></td>
+                    <td><a th:href="@{/followManga/{id}(id=${manga.idManga})}">Seguir</td>
                 </tr>
             </table>
         </div>

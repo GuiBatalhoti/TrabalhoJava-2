@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Atualizar Lista</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Manga</h1>
+        <h3><a href="/lista">Voltar para a lista</a></h3>
+        <div th:each="manga : ${manga}">
+            <div class="row">
+                <p>Título: <span th:text="${manga.title}"></span></p>
+                <p>Autor: <span th:text="${manga.author}"></span></p>
+                <p>Data publicação: <span th:text="${manga.publicationDate}"></span></p>
+                <p>Número capítulos: <span th:text="${manga.numChapter}"></span></p>
+            </div>
+        </div>
+        
+        
+        <div class="container">
+            <form th:action="@{/updateMangaList}" th:object="${mangaList}" method="POST" class="form-register" enctype="utf8">
+                <h2 class="form-register-heading">Atualizar Lista</h2>
+                <label for="inputVolumesLidos" class="sr-only">Capítulos pendentes</label><br>
+                <input type="number" id="inputVolumesLidos" class="form-control" th:field="*{dueChapters}" required><br>
+                <label for="inputDataPendente" class="sr-only">Data de Publicação</label><br>
+                <input type="date" id="inputDataPendente" class="form-control" pattern="dd/MM/yyyy" th:field="*{due}"  required><br>
+                <label for="inputDescricao" class="sr-only">Descrição</label><br>
+                <input type="text" id="inputDescricao" class="form-control" placeholder="Descricao" th:field="*{description}"  required><br>
+                
+                <div class="text-center">
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Adicionar</button>
+                </div>
+            </form>
+
+        </div>
+    </body>
+</html>

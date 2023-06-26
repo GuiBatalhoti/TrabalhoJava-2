@@ -26,6 +26,8 @@ public class MangaList implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected MangaListPK mangaListPK;
+    @Column(name = "due_chapters")
+    private Integer dueChapters;
     @Column(name = "description")
     private String description;
     @Column(name = "due")
