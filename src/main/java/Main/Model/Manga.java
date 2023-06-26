@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -39,7 +40,8 @@ public class Manga implements Serializable {
     @Column(name = "author")
     private String author;
     @Column(name = "publication_date")
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date publicationDate;
     @Column(name = "num_chapter")
     private Integer numChapter;

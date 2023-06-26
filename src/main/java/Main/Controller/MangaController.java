@@ -3,6 +3,7 @@ package Main.Controller;
 import Main.Model.Manga;
 import Main.Repository.MangaRepository;
 import jakarta.validation.Valid;
+import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,9 @@ public class MangaController {
 
     @PostMapping("/addMangaSuccess")
     public String formRegistration(@Valid Manga manga, BindingResult result, RedirectAttributes attributes) {
+        System.out.println(manga.getPublicationDate());
+//        SimpleDateFormat dateParser = new SimpleDateFormat ("dd/MM/yyyy");
+//        manga.getDate()
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Verifique os campos!");
             return "redirect:/addManga";
