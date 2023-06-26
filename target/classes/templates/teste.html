@@ -10,88 +10,24 @@
 
 <body>
 
-<div class="container">
-  <h2 class="text-center">Book List</h2>
-  <div class="btn-group mb-3">
-    <button class="btn btn-primary active" data-toggle="table" data-target="#table1">Table 1</button>
-    <button class="btn btn-primary" data-toggle="table" data-target="#table2">Table 2</button>
-    <button class="btn btn-primary" data-toggle="table" data-target="#table3">Table 3</button>
-  </div>
-
-  <table id="table1" class="table">
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Publication Date</th>
-      <th>Number of Chapters</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>The Great Gatsby</td>
-      <td>F. Scott Fitzgerald</td>
-      <td>10/15/1925</td>
-      <td>9</td>
-    </tr>
-    <!-- Add more rows for table 1 -->
-    </tbody>
-  </table>
-
-  <table id="table2" class="table" style="display: none;">
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Publication Date</th>
-      <th>Number of Chapters</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>To Kill a Mockingbird</td>
-      <td>Harper Lee</td>
-      <td>07/11/1960</td>
-      <td>31</td>
-    </tr>
-    <!-- Add more rows for table 2 -->
-    </tbody>
-  </table>
-
-  <table id="table3" class="table" style="display: none;">
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Publication Date</th>
-      <th>Number of Chapters</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>The Lord of the Rings</td>
-      <td>J.R.R. Tolkien</td>
-      <td>07/29/1954</td>
-      <td>37</td>
-    </tr>
-    <!-- Add more rows for table 3 -->
-    </tbody>
-  </table>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('[data-toggle="table"]').on('click', function() {
-      var target = $(this).data('target');
-      $('.table').hide();
-      $(target).show();
-      $('[data-toggle="table"]').removeClass('active');
-      $(this).addClass('active');
-    });
-  });
-</script>
-
+<h1>Lista de Manga</h1>
+        <div>
+            <table>
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Data de publicação</th>
+                    <th>Número capítulos: </th>
+                </tr>
+                <tr th:each="manga : ${itManga}">
+                    <td><a th:href="@{/manga/{id}(id=${manga.idManga})}">
+                            <span th:text="${manga.title}"></span></a></td>
+                    <td><span th:text="${manga.author}"></span></td>
+                    <td><span th:text="${manga.publicationDate}"></span></td>
+                    <td><span th:text="${manga.numChapter}"></span></td>
+                </tr>
+            </table>
+        </div>
 </body>
 
 </html>

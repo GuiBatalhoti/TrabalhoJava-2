@@ -56,7 +56,7 @@ public class MangaController {
     public ModelAndView todosManga() {
         ModelAndView mv = new ModelAndView("teste");
         Iterable<Manga> itManga = mr.findAll();
-        mv.addObject("manga", itManga);
+        mv.addObject("itManga", itManga);
         return mv;
     }
 
@@ -65,6 +65,14 @@ public class MangaController {
         Manga manga = mr.findByIdManga(idManga);
         ModelAndView mv = new ModelAndView("detalhesManga");
         mv.addObject("manga", manga);
+        return mv;
+    }
+    
+    @RequestMapping("/lista")
+    public ModelAndView lista() {
+        ModelAndView mv = new ModelAndView("lista");
+        Iterable<Manga> itManga = mr.findAll();
+        mv.addObject("itManga", itManga);
         return mv;
     }
 }

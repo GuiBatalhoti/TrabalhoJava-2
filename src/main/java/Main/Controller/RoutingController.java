@@ -17,8 +17,5 @@ public class RoutingController {
         return "teste" ;
     }
     
-    @GetMapping(value = {"/lista"})
-    public String lista() {
-        return "lista" ;
-    }
+    
 }
