@@ -94,10 +94,12 @@ public class ListaController {
             //recupera o manga e verifica se os valores condizem
             Manga manga = mr.findByIdManga(mangaId);
             int read = Integer.valueOf(formData.get("dueChapters").get(0));
-            if(manga.getNumChapter() > read){
+            int maxChapters = manga.getNumChapter();
+            read += manga.getNumChapter();
+            if(maxChapters > read){
                 mangaList.setDueChapters(read);
             }else{
-                mangaList.setDueChapters(manga.getNumChapter());
+                mangaList.setDueChapters(maxChapters);
             }
             mangaList.setDescription(formData.get("description").get(0));
             mlr.save(mangaList);
