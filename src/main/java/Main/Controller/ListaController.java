@@ -12,6 +12,9 @@ import Main.Model.Users;
 import Main.Repository.MangaListRepository;
 import Main.Repository.MangaRepository;
 import jakarta.validation.Valid;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -48,7 +51,7 @@ public class ListaController {
         return "redirect:/lista";
     }
     
-    @GetMapping("/usuario/meusManga/{idManga}")
+    @GetMapping("/meusManga/{idManga}")
     public ModelAndView updateMangaList(@PathVariable("idManga") int idManga) {
         //busca a lista pelo id do usuario e do manga
         Object principal = SecurityContextHolder. getContext().getAuthentication().getPrincipal();
@@ -76,21 +79,22 @@ public class ListaController {
         return "redirect:/lista";
     }
     
-    @GetMapping("/usuario/meusManga")
+    @GetMapping("/meusManga")
     public ModelAndView myList() {
-        //busca a lista pelo id do usuario e do manga
+        //busca a lista pelo id do usuario
         Object principal = SecurityContextHolder. getContext().getAuthentication().getPrincipal();
         Users user = (Users) principal;
-        MangaListPK mlPK = new MangaListPK(user.getIdUser(), idManga);
-        MangaList mangaList = mlr.findByMangaListPK(mlPK);      
+        List<MangaList> mangaListList = mlr.findByUsers(user);      
         
-        //recupera o manga que a lista referencia
-        Manga manga = mr.findByIdManga(idManga);
-
-        //cria um ModelAndView com o mangaList encontrado
-        ModelAndView mv = new ModelAndView("mangaList");
-        mv.addObject("mangaList", mangaList);
-        mv.addObject("manga", manga);
+        //adiciona todos os manga do usuario em uma lista
+        ArrayList<Manga> listManga = new ArrayList();
+        for(MangaList mangaList: mangaListList){
+            listManga.add(mangaList.getManga());
+        }
+        
+        //cria um ModelAndView com a lista criada
+        ModelAndView mv = new ModelAndView("meusManga");
+        mv.addObject("itManga", listManga);
         
         return mv;
     }

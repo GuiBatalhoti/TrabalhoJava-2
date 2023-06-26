@@ -59,6 +59,14 @@ public class MangaList implements Serializable {
         this.mangaListPK = mangaListPK;
     }
 
+    public Integer getDueChapters() {
+        return dueChapters;
+    }
+
+    public void setDueChapters(Integer dueChapters) {
+        this.dueChapters = dueChapters;
+    }
+    
     public String getDescription() {
         return description;
     }
@@ -114,14 +122,6 @@ public class MangaList implements Serializable {
     @Override
     public String toString() {
         return "Main.Model.MangaList[ mangaListPK=" + mangaListPK + " ]";
-    }
-
-    public Integer getDueChapters() {
-        return dueChapters;
-    }
-
-    public void setDueChapters(Integer dueChapters) {
-        this.dueChapters = dueChapters;
     }
     
 }

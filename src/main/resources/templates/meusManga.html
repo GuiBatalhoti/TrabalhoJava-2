@@ -11,6 +11,23 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <table>
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Data de publicação</th>
+                    <th>Número capítulos: </th>
+                </tr>
+                <tr th:each="manga : ${itManga}">
+                    <td><a th:href="@{/manga/{id}(id=${manga.idManga})}">
+                            <span th:text="${manga.title}"></span></a></td>
+                    <td><span th:text="${manga.author}"></span></td>
+                    <td><span th:text="${manga.publicationDate}"></span></td>
+                    <td><span th:text="${manga.numChapter}"></span></td>
+                    <td><a th:href="@{/followManga/{id}(id=${manga.idManga})}">Seguir</td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>
