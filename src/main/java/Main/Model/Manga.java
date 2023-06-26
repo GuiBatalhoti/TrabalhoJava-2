@@ -47,7 +47,10 @@ public class Manga implements Serializable {
     private Integer numChapter;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manga")
     private Collection<MangaList> mangaListCollection;
-
+    
+    @Column(name = "description")
+    private String description;
+    
     public Manga() {
     }
 
@@ -103,6 +106,14 @@ public class Manga implements Serializable {
         this.mangaListCollection = mangaListCollection;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

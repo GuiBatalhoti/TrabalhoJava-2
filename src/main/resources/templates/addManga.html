@@ -19,6 +19,8 @@
                 <input type="number" id="inputVolumes" class="form-control" placeholder="Volumes" th:field="*{numChapter}" required>
                 <label for="inputDataPublicacao" class="sr-only">Data de Publicação</label>
                 <input type="date" id="inputDataPublicacao" class="form-control" placeholder="Data de Publicação" pattern="dd/MM/yyyy" th:field="*{publicationDate}"  required>
+                <label for="inputDescricao" class="sr-only">Descricao</label>
+                <input type="text" id="inputDescricao" class="form-control" placeholder="Descricao" th:field="*{description}"required>
                 <div class="text-center">
                     <br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Adicionar</button>

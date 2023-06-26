@@ -11,16 +11,16 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Manga</h1>
-        <h3><a href="/lista">Voltar para a lista</a></h3>
         <div th:each="manga : ${manga}">
             <div class="row">
                 <p>Título: <span th:text="${manga.title}"></span></p>
                 <p>Autor: <span th:text="${manga.author}"></span></p>
                 <p>Data publicação: <span th:text="${manga.publicationDate}"></span></p>
                 <p>Número capítulos: <span th:text="${manga.numChapter}"></span></p>
+                <p>Descrição: <span th:text="${manga.description}"></span></p>
             </div>
-
         </div>
+        <h3><a href="/lista">Voltar para a lista</a></h3>
+        
     </body>
 </html>
