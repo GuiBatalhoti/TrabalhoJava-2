@@ -12,16 +12,23 @@ import Main.Model.Users;
 import Main.Repository.MangaListRepository;
 import Main.Repository.MangaRepository;
 import jakarta.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -65,36 +72,52 @@ public class ListaController {
         //cria um ModelAndView com o mangaList encontrado
         ModelAndView mv = new ModelAndView("mangaList");
         mv.addObject("mangaList", mangaList);
-        mv.addObject("manga", manga);
+        mv.addObject("thisManga", manga);
         
         return mv;
     }
     
-    @PostMapping("/updateMangaList")
-    public String updateMangaList(@Valid MangaList mangaList, BindingResult result, RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            return "redirect:/lista";
+    @RequestMapping(value="/updateMangaList", method=RequestMethod.POST, 
+        consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String updateMangaList(@RequestBody MultiValueMap<String, String> formData) {
+        try{
+            int mangaId = Integer.valueOf(formData.get("manga").get(0));
+            Object principal = SecurityContextHolder. getContext().getAuthentication().getPrincipal();
+            Users user = (Users) principal;
+            MangaListPK mlPK = new MangaListPK(user.getIdUser(), mangaId);
+
+            MangaList mangaList = new MangaList(mlPK);
+
+            Date due = new SimpleDateFormat("yyyy-MM-dd").parse(formData.get("due").get(0));
+            mangaList.setDue(due);
+            
+            //recupera o manga e verifica se os valores condizem
+            Manga manga = mr.findByIdManga(mangaId);
+            int read = Integer.valueOf(formData.get("dueChapters").get(0));
+            if(manga.getNumChapter() > read){
+                mangaList.setDueChapters(read);
+            }else{
+                mangaList.setDueChapters(manga.getNumChapter());
+            }
+            mangaList.setDescription(formData.get("description").get(0));
+            mlr.save(mangaList);
+            return "redirect:/meusManga";
+        }catch(Exception e){
+            return "redirect:/meusManga";
         }
-        mlr.save(mangaList);
-        return "redirect:/lista";
     }
+    
+    
     
     @GetMapping("/meusManga")
     public ModelAndView myList() {
         //busca a lista pelo id do usuario
         Object principal = SecurityContextHolder. getContext().getAuthentication().getPrincipal();
         Users user = (Users) principal;
-        List<MangaList> mangaListList = mlr.findByUsers(user);      
+        List<MangaList> mangaListList = mlr.findByUsers(user);
         
-        //adiciona todos os manga do usuario em uma lista
-        ArrayList<Manga> listManga = new ArrayList();
-        for(MangaList mangaList: mangaListList){
-            listManga.add(mangaList.getManga());
-        }
-        
-        //cria um ModelAndView com a lista criada
         ModelAndView mv = new ModelAndView("meusManga");
-        mv.addObject("itManga", listManga);
+        mv.addObject("mangaList", mangaListList);
         
         return mv;
     }

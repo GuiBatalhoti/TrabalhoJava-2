@@ -8,6 +8,7 @@ package Main.Model;
 import java.io.Serializable;
 import java.util.Date;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -31,7 +32,7 @@ public class MangaList implements Serializable {
     @Column(name = "description")
     private String description;
     @Column(name = "due")
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date due;
     @JoinColumn(name = "id_manga", referencedColumnName = "id_manga", insertable = false, updatable = false)
     @ManyToOne(optional = false)

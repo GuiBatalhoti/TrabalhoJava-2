@@ -18,14 +18,17 @@ and open the template in the editor.
                     <th>Autor</th>
                     <th>Data de publicação</th>
                     <th>Número capítulos: </th>
+                    <th>Capítulos lidos: </th>
                 </tr>
-                <tr th:each="manga : ${itManga}">
-                    <td><a th:href="@{/manga/{id}(id=${manga.idManga})}">
-                            <span th:text="${manga.title}"></span></a></td>
-                    <td><span th:text="${manga.author}"></span></td>
-                    <td><span th:text="${manga.publicationDate}"></span></td>
-                    <td><span th:text="${manga.numChapter}"></span></td>
-                    <td><a th:href="@{/followManga/{id}(id=${manga.idManga})}">Ajustar</td>
+                <tr th:each="mangaL : ${mangaList}">
+                    <td><a th:href="@{/manga/{id}(id=${mangaL.manga.idManga})}">
+                            <span th:text="${mangaL.manga.title}"></span></a></td>
+                    <td><span th:text="${mangaL.manga.author}"></span></td>
+                    <td><span th:text="${mangaL.manga.publicationDate}"></span></td>
+                    <td><span th:text="${mangaL.manga.numChapter}"></span></td>
+                    <td><span th:text="${mangaL.dueChapters != null} ? ${mangaL.dueChapters} : '0'"></span></td>
+                    
+                    <td><a th:href="@{/meusManga/{id}(id=${mangaL.manga.idManga})}">Atualizar</td>
                 </tr>
             </table>
         </div>
