@@ -95,7 +95,11 @@ public class ListaController {
             Manga manga = mr.findByIdManga(mangaId);
             int read = Integer.valueOf(formData.get("dueChapters").get(0));
             int maxChapters = manga.getNumChapter();
-            read += manga.getNumChapter();
+            
+            MangaList old = mlr.getReferenceById(mlPK);
+            if(old.getDueChapters() != null){
+                read += old.getDueChapters();
+            }
             if(maxChapters > read){
                 mangaList.setDueChapters(read);
             }else{
