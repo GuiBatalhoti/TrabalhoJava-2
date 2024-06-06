@@ -1,4 +1,8 @@
-# Trabalho Tecnologia Java
+# Trabalho 2 da disciplina de Tecnologia Java
+
+## Descrição para o Projeto (Professor)
+O segundo projeto da disciplina é o desenvolvimento de uma aplicação Java Web que permita aos usuários criar e gerenciar listas de afazeres para o tema específico determinado pelo grupo, em um determinado período de tempo (ou outro critério de separação) das listas.
+
 ## Alunos
 - Gabriel Oya Nozawa
 - Guilherme Eduardo Silva Batalhoti
